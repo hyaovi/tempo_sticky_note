@@ -1,0 +1,18 @@
+main.app {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+.app-header {
+  height: 60px;
+  background-color: darkslategray;
+  color: white !important;
+  padding: 16px;
+}
+
+.note-board {
+  flex-grow: 1;
+}
