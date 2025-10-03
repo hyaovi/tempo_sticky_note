@@ -1,0 +1,8 @@
+Architecture Overview
+
+
+The Sticky Notes app is built with a modular React + TypeScript architecture to keep the logic clean, testable, and easy to extend. At the core, I use custom hooks (useNoteManager and useDrag) to encapsulate all business logic surrounding notes management and drag/resize interactions. This helps isolate state management from the UI, so components like NoteBoard and StickyNote focus purely on rendering and user interaction.
+
+useNoteManager acts as the state engine for notes. It manages note creation, updates, deletion, z‑index ordering, and ensures size/position constraints are respected. The hook uses a Map for O(1) lookups, memoization for efficient rendering, and ref‑based z‑index tracking to avoid race conditions. On the interaction side, useDrag abstracts all mouse events for moving and resizing notes. It uses requestAnimationFrame for smooth 60fps updates and enforces min/max resize limits set in constants.ts.
+
+UI components are kept minimal and composable. App provides the root context and header, NoteBoard lists all notes and wires drag callbacks, while StickyNote renders an individual note with its editable content and resize control. Notes themselves are memoized to avoid unnecessary re‑renders. This separation of concerns results in a codebase that is both performant and easy to maintain, while giving clear entry points for adding new features in the future (e.g., persistence, multi‑user, or syncing)
